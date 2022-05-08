@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+POSTS_PAGE = 10
 # Application definition
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 

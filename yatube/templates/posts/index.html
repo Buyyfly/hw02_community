@@ -1,33 +1,24 @@
 {% extends 'base.html' %}
 {% block title %}
-<meta charset="utf-8"> <!-- Кодировка сайта -->
-    <title>Последние обновления на сайте</title>
+<title>Последние обновления на сайте</title>
 {% endblock %}
-
 {% block content %}
-<div class="container py-5">
-        <h1>Последние обновления на сайте</h1>
-    <!-- Использованы классы бустрапа: -->
-    <!-- border-top: создаёт тонкую линию сверху блока -->
-    <!-- text-center: выравнивает текстовые блоки внутри блока по центру -->
-    <!-- py-3: контент внутри размещается с отступом сверху и снизу -->
-    {% for post in posts %}
-  <ul>
+<h1>Последние обновления на сайте</h1>
+{% for post in posts %}
+<ul>
     <li>
-      Автор: {{ post.author.get_full_name }}
+        Автор: {{ post.author.get_full_name }}
     </li>
     <li>
-      Дата публикации: {{ post.pub_date|date:"d E Y" }}
+        Дата публикации: {{ post.pub_date|date:"d E Y" }}
     </li>
-  </ul>
-  <p>{{ post.text }}</p>
-    {% if post.group %}
-        <a href="{% url 'posts:group_list' post.group.slug %}">все записи группы</a>
-    {% endif %}
-    {% if not forloop.last %}<hr>{% endif %}
-    {% endfor %}
-<!-- класс py-5 создает отступы сверху и снизу блока -->
-
+</ul>
+<p>
+    {{ post.text }}
+</p>
+{% if post.group %}
+<a href="{% url 'posts:group_list' post.group.slug %}">все записи группы</a>
+{% endif %}
+{% if not forloop.last %}<hr>{% endif %}
+{% endfor %}
 {% endblock %}
-
-
